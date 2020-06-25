@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<t t-name="PosSaleDetailsBypass">
+		<div class="pos-sale-ticket" style="width: 572px;">
+		<div class="text-center">
+                <h2 style="text-align: center;"><strong>Sale Details</strong></h2>
+
+                <p style="text-align: center;font-size:15px;"><strong><t t-esc="date_start" t-options="{'widget': 'datetime'}"/> - <t t-esc="date_end" t-options="{'widget': 'datetime'}"/></strong></p>
+            </div>
+
+            <!-- Orderlines -->
+            <h3><strong>Products</strong></h3>
+            <table  class="table table-condensed">
+                <thead><tr>
+                    <th><strong>Product</strong></th>
+                    <th><strong>Quantity</strong></th>
+                    <th><strong>Price Unit</strong></th>
+                </tr></thead>
+                <tbody>
+                <tr t-foreach='products' t-as='line'>
+                    <td><t t-esc="line['product_name']" /></td>
+                    <td>
+                        <t t-esc="line['quantity']" />
+                        <t t-if='line["uom"] != "Unit(s)"'>
+                            <t t-esc='line["uom"]' /> 
+                        </t>
+                    </td>
+                    <td>
+                        <t t-esc='line["price_unit"]' />
+                    <t t-if='line["discount"] != 0'>
+                        Disc: <t t-esc='line["discount"]' />%
+                    </t>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <br/>
+
+            <h3><strong>Payments</strong></h3>
+            <table  class="table table-condensed">
+                <thead><tr>
+                    <th><strong>Name</strong></th>
+                    <th><strong>Total</strong></th>
+                </tr></thead>
+                <tbody>
+                <tr t-foreach='payments' t-as='payment'>
+                    <td><t t-esc="payment['name']" /></td>
+                    <td><t t-esc="payment['total']" t-options="{'widget': 'float', 'precision': currency_precision}"/></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <br/>
+
+            <h3><strong>Taxes</strong></h3>
+            <table  class="table table-condensed">
+                <thead><tr>
+                    <th><strong>Name</strong></th>
+                    <th><strong>Total</strong></th>
+                </tr></thead>
+                <tbody>
+                <tr t-foreach='taxes' t-as='tax'>
+                    <td><t t-esc="tax['name']" /></td>
+                    <td><t t-esc="tax['total']" t-options="{'widget': 'float', 'precision': currency_precision}"/></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <br/>
+            <br/>
+
+            <b><strong>Total: <t t-esc='total_paid' t-options="{'widget': 'float', 'precision': currency_precision}"/></strong></b>
+		
+		</div>
+		
+	</t>
+
+	<t t-name="SaleDetailsWidget">
+        <div class='receipt-screen screen'>
+        	 <div class='top-content'>
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Back
+                    </span>
+                    <h1>Sale Details</h1>
+                    <span class='button next'>
+                        Ok 
+                        <i class='fa fa-angle-double-right'></i>
+                    </span>
+             </div>
+             <div class="centered-content">
+                 <div class="button print">
+                     <i class='fa fa-print'></i> Print Sale Details
+                 </div>
+                 <div class="pos-receipt-container-sale">
+                 </div>
+             </div>
+        </div>
+    </t>
+	
+	<t t-name="SaleDetailsButtonBypass">
+        <div class="oe_status">
+            <div class="js_connected oe_icon"> 
+                <i class='fa fa-fw fa-print'></i>
+            </div>
+            
+        </div>
+    </t>
+	
+</templates>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    
+    <t t-name="ReprintButtonByPass">
+        <div class='control-button js_reprint'>
+            <i class="fa fa-retweet"></i> Reprint Receipt New
+        </div>
+    </t>
+	<t t-name="ReprintButtonByPassWidget">
+        <div class='receipt-screen screen'>
+        	 <div class='top-content'>
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Back
+                    </span>
+                    <h1>Reprint</h1>
+                    <span class='button next'>
+                        Ok 
+                        <i class='fa fa-angle-double-right'></i>
+                    </span>
+             </div>
+             <div class="centered-content">
+                 <div class="button print">
+                     <i class='fa fa-print'></i> Reprint 
+                 </div>
+                 <div class="pos-reprint">
+                 </div>
+             </div>
+        </div>
+    </t>
+    
+</templates>
